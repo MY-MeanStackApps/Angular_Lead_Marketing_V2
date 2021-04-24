@@ -1,0 +1,194 @@
+<!-- <app-navbar></app-navbar> -->
+<!-- Navbar -->
+
+<nav id="navbar1" class="navbar navbar-expand-md  fixed-top">
+    <div class="container">
+
+        <span class="navbar-brand">
+          <img src="../../../../assets/icons/lead_navbar.png  " alt="" id="logo" routerLink="/dashboard">
+          <span class="ml-3">Marketing</span>
+        </span>
+
+        <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text">
+        <i class="fa fa-bars fa-1x"></i></span>
+        </button>
+
+    </div>
+</nav>
+
+
+<!-- Main area start here-->
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-12 col-md-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+
+                    <!--When No Leads Found-->
+                    <div class="row justify-content-center" *ngIf="Leads?.length <= 0">
+                        <div class="col-6 col-md-6">
+                            <p class="pt-2">No Leads found</p>
+                        </div>
+                        <div class="col-6 col-md-6 justify-content-end">
+                            <button class="btn btn-primary mr-3" data-toggle="modal" data-target="#AddModal1" style="float: right;"> Add Lead </button>
+                            <div class="image-upload">
+                                <label for="file-input1">Upload CSV</label>
+                                <input type="file" #fileImportInput name="File Upload" id="file-input1" (change)="fileChangeListener($event)" accept=".csv" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--When Leads available-->
+                    <div *ngIf="Leads?.length >= 1">
+                        <div class="row">
+
+                            <div class="form-group col-8 col-md-6">
+                                <div class="input-group mb-3" id="Search_Group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                      <i class="fa fa-search" aria-hidden="true"></i>
+                                    </span>
+                                    </div>
+                                    <input type="text" class="form-control" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Ledas" name="djk" id="searchInput">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-4 col-md-6">
+                                <button class="btn btn-primary mb-3 mr-3" data-toggle="modal" data-target="#AddModal1" style="float: right;"> Add Lead </button>
+                                <div class="image-upload">
+                                    <label for="file-input">Upload CSV</label>
+                                    <input type="file" #fileImportInput name="File Upload" id="file-input" (change)="fileChangeListener($event)" accept=".csv" />
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <tr class="th_r">
+                                    <th>ID <i class="fa fa-sort" aria-hidden="true" (click)="sort('_id')"></i> </th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr *ngFor="let items of Leads | filter:searchText | paginate: { itemsPerPage: 10, currentPage: p } | orderBy: key : reverse  ; index as i" class="td_r">
+                                    <td># {{i+1}}</td>
+                                    <td title="{{items.name}}" *ngIf="items.name?.length >= 30" routerLink="/single/{{items._id}}" id="LeadName">{{items.name.substr(0,30) | uppercase}} ... </td>
+                                    <td title="{{items.name}}" *ngIf="items.name?.length <= 30" routerLink="/single/{{items._id}}" id="LeadName">{{items.name | uppercase}} </td>
+                                    <td>{{items.email}}</td>
+                                    <td>{{items.phone}}</td>
+                                    <td>
+                                        <i class="fa fa-pencil mr-4" aria-hidden="true" (click)="singleOnclick(items._id)" data-toggle="modal" data-target="#UpdateModal"></i>
+                                        <i class="fa fa-trash-o" aria-hidden="true" (click)="delete(items._id)"></i>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <pagination-controls (pageChange)="p = $event" *ngIf="Leads?.length > 10"></pagination-controls>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Add new Lead -->
+<div class="modal fade" id="AddModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form [formGroup]="leadForm" (ngSubmit)="submit(leadForm)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Leads</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-12 col-md-12">
+                        <label for="name1">Name</label>
+                        <input type="text" placeholder="Name" id="name1" class="form-control" formControlName="name">
+                        <div class="req" *ngIf="name.invalid && (name.dirty || name.touched)">
+                            <span *ngIf="name.errors.required">
+                                Name is required.
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 col-md-12">
+                        <label for="email1">Email</label>
+                        <input type="email" placeholder="Email" id="email1" class="form-control" formControlName="email">
+                        <div class="req" *ngIf="email.invalid && (email.dirty || email.touched)">
+                            <span *ngIf="email.errors.required">
+                                Email is required.
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 col-md-12">
+                        <label for="phone1">Phone</label>
+                        <input type="number" placeholder="Phone" id="phone1" class="form-control" formControlName="phone">
+                        <div class="req" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                            <span *ngIf="phone.errors.required">
+                                Phone is required.
+                            </span>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" [disabled]="!leadForm.valid" class="btn btn-primary" value="save">
+                    <input type="button" hidden data-dismiss="modal" id="closeModal1">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<!-- Update Lead Modal -->
+<div class="modal fade" id="UpdateModal" tabindex="-1" role="dialog" aria-labelledby="UpdateModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="UpdateModal">Update Leads</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-12 col-md-12">
+                        <label for="name1">Name</label>
+                        <input type="text" placeholder="Name" id="name1" class="form-control" name="nam1" [(ngModel)]="UpdateForm.name">
+
+                    </div>
+
+                    <div class="form-group col-12 col-md-12">
+                        <label for="email1">Email</label>
+                        <input type="email" placeholder="Email" id="email1" class="form-control" name="em1" [(ngModel)]="UpdateForm.email">
+
+                    </div>
+
+                    <div class="form-group col-12 col-md-12">
+                        <label for="phone1">Phone</label>
+                        <input type="number" placeholder="Phone" id="phone1" class="form-control" name="phon2" [(ngModel)]="UpdateForm.phone">
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary" value="save" (click)="Update()">
+                    <input type="button" hidden data-dismiss="modal" id="closeUpdateModel1">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

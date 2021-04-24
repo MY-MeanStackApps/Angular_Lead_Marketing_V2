@@ -1,0 +1,188 @@
+/* You can add global styles to this file, and also import other style files */
+
+.container-fluid {
+    margin-top: 60px;
+}
+
+.active {
+    border-bottom: 3px solid white;
+}
+
+nav {
+    min-height: 61px;
+}
+
+nav .nav-item {
+    min-width: 120px;
+    text-align: center;
+}
+
+.card {
+    background-color: #ffffff !important;
+}
+
+.btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.modal-footer {
+    background: #f3f2f2 !important;
+}
+
+.btn-primary {
+    background-color: #1b5297 !important;
+}
+
+.btn-secondary {
+    background-color: white !important;
+    color: #1b5297 !important;
+}
+
+#Search_Group {
+    border: 1px solid #d0d0d0;
+    border-radius: 4px !important;
+}
+
+#Search_Group #searchInput {
+    border: none !important;
+}
+
+#Search_Group #searchInput:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#Search_Group .input-group-text {
+    border: none !important;
+}
+
+.fa-sort {
+    cursor: pointer;
+}
+
+pagination-controls {
+    position: absolute;
+    bottom: 0px;
+}
+
+.image-upload>input {
+    display: none;
+}
+
+.image-upload {
+    float: right;
+    margin: 0px 10px;
+}
+
+.uploadFiles>input {
+    display: none;
+}
+
+.uploadFiles {
+    float: right;
+    margin: 0px 10px;
+}
+
+.image-upload label {
+    min-width: 100px;
+    height: 39px;
+    background: #343a40;
+    text-align: center;
+    line-height: 37px;
+    color: rgb(255 255 255);
+    border-radius: 3px;
+    outline: none !important;
+    cursor: pointer;
+}
+
+.uploadFiles label {
+    height: 39px;
+    text-align: center;
+    color: black !important;
+    border-radius: 3px;
+    outline: none !important;
+    cursor: pointer;
+    background: white;
+    border: 1px solid grey !important;
+    float: right;
+    padding: 6px !important;
+    font-weight: 500px !important
+}
+
+.req {
+    margin: 5px 0px 0px 0px;
+    color: red !important;
+    font-family: sans-serif;
+}
+
+.navbar {
+    background: #f3f2f2 !important;
+}
+
+.navbar-brand h5 {
+    outline: none !important;
+    cursor: pointer;
+}
+
+.nav-item .nav-link {
+    font-size: 18px;
+    color: white;
+}
+
+.navbar-brand #logo {
+    width: 10%;
+}
+
+.navbar-brand #logo:focus {
+    outline: none !important;
+}
+
+.navbar-brand {
+    cursor: pointer;
+}
+
+.navbar-brand:focus {
+    outline: none !important;
+}
+
+.leadName {
+    font-family: revert !important;
+}
+
+table {
+    width: 100%;
+}
+
+table .th_r {
+    background-color: #f1fcff !important;
+}
+
+table .td_r {
+    line-height: 40px;
+}
+
+table tr th {
+    color: #2b2b2b !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+}
+
+table td {
+    color: rgb(78 78 78) !important;
+    padding: 0px 0px 0px 10px;
+    font-size: 15px;
+    font-weight: 400 !important;
+}
+
+table tr th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 10px !important;
+}
+
+table tr th:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px !important;
+}

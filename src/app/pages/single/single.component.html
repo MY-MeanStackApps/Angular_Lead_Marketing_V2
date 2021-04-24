@@ -1,0 +1,607 @@
+<!-- Navbar -->
+
+<nav id="navbar1" class="navbar navbar-expand-md fixed-top">
+    <div class="container">
+
+        <span class="navbar-brand">
+      <img src="../../../../assets/icons/lead_navbar.png " alt="" id="logo" routerLink="/dashboard">
+      <span class="ml-3 leadName">{{singleLead?.name}}</span>
+        </span>
+
+        <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text">
+        <i class="fa fa-bars fa-1x"></i></span>
+        </button>
+
+    </div>
+</nav>
+
+<br><br>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 main_Bar">
+
+            <!-- Mark complete bar -->
+
+            <!--Start here-->
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="mark1" (click)="getStatus(1,true)" *ngIf="!mark.first">
+                                <p>Open not Contacted</p>
+                            </div>
+                            <div class="mark0" (click)="getStatus(1,false)" *ngIf="mark.first">
+                                <p><i class="fa fa-check" aria-hidden="true"></i></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="mark2" (click)="getStatus(2,true)" *ngIf="!mark.second">
+                                <p>Working Contacted</p>
+                            </div>
+                            <div class="mark0" (click)="getStatus(2,false)" *ngIf="mark.second">
+                                <p><i class="fa fa-check" aria-hidden="true"></i></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="mark2" (click)="getStatus(3,true)" *ngIf="!mark.third">
+                                <p>Closed not Contacted</p>
+                            </div>
+                            <div class="mark0" (click)="getStatus(3,false)" *ngIf="mark.third">
+                                <p><i class="fa fa-check" aria-hidden="true"> </i></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="mark2" (click)="getStatus(4,true)" *ngIf="!mark.fourth">
+                                <p>Converted</p>
+                            </div>
+                            <div class="mark0" (click)="getStatus(4,true)" *ngIf="mark.fourth">
+                                <p><i class="fa fa-check" aria-hidden="true"></i></p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" (click)="savestatus()">Mark as Complete</button>
+                </div>
+            </div>
+            <!--End here-->
+
+        </div>
+        <div class="col-12 p-0 pt-2">
+            <!-- Tabs -->
+            <section id="tabs">
+                <div class="container">
+                    <!-- <h6 class="section-title h1">Tabs</h6> -->
+                    <div class="row">
+                        <div class="col-md-12 p-0">
+                            <div class="card">
+                                <!--Add Tab Bar Navabr-->
+                                <!--Strt here-->
+                                <div class="card-header p-0">
+                                    <nav>
+                                        <div class="nav nav-tabs nav-fill p-3" id="nav-tab" role="tablist" style="border: none">
+                                            <a class="nav-item nav-link active" id="Activity-tab" data-toggle="tab" href="#Activity" role="tab" aria-selected="true">Activity</a>
+                                            <a class="nav-item nav-link" id="Details-tab" data-toggle="tab" href="#Details" role="tab" aria-selected="false">Details</a>
+                                            <a class="nav-item nav-link" id="Attachments-tab" data-toggle="tab" href="#Attachments" role="tab" aria-selected="false">Attachhment</a>
+                                            <a class="nav-item nav-link" id="calenderTabb-tab" data-toggle="tab" href="#calenderTabb" role="tab" aria-selected="false">Calender App</a>
+
+                                        </div>
+                                    </nav>
+                                </div>
+                                <!--End here-->
+
+                                <!--Main Content Area start here-->
+                                <div class="card-body ">
+                                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent1">
+                                        <div class="tab-pane fade show active" id="Activity" role="tabpanel" aria-labelledby="Activity-tab">
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="card">
+
+                                                        <div class="card-header p-0">
+                                                            <nav>
+                                                                <div class="nav nav-tabs nav-fill p-3" id="nav-tab" role="tablist" style="border: none">
+                                                                    <a class="nav-item nav-link active" id="Newtask-tab" data-toggle="tab" href="#Newtask" role="tab" aria-controls="Newtask" aria-selected="true">New Task</a>
+                                                                    <a class="nav-item nav-link" id="LogACall-tab" data-toggle="tab" href="#LogACall" role="tab" aria-controls="LogACall" aria-selected="false">Log A Call</a>
+                                                                    <a class="nav-item nav-link" id="Events-tab" data-toggle="tab" href="#Events" role="tab" aria-controls="Events" aria-selected="false">Events</a>
+                                                                </div>
+                                                            </nav>
+                                                        </div>
+
+                                                        <div class="card-body p-0 pl-2 pr-2">
+                                                            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                                                <!--First Tab Create Task -->
+                                                                <div class="tab-pane fade show active p-3" id="Newtask" role="tabpanel" aria-labelledby="Newtask-tab">
+                                                                    <button class="btn btn-primary create_task1 mb-2" *ngIf="openForm.task" (click)="taskOpen()"> <!-- -->
+                                                                      Close
+                                                                    </button>
+
+                                                                    <button class="btn create_task1 mb-2" *ngIf="!openForm.task" (click)="taskOpen()"> <!---->
+                                                                              Create a Task ...
+                                                                    </button>
+
+                                                                    <!--Form Create Task -->
+                                                                    <form *ngIf="openForm.task">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-12 col-md-12">
+                                                                                <label for="subject1">Subject</label>
+                                                                                <select name="sub" id="subject1" class="form-control" [(ngModel)]="taskForm.subject">
+                                                                                  <option value="none">--None--</option>
+                                                                                  <option value="Call">Call</option>
+                                                                                  <option value="Email">Email</option>
+                                                                                  <option value="Send Later">Send Later</option>
+                                                                                  <option value="Send Quote">Send Quote</option>
+                                                                                  <option value="Other">Other</option>
+                                                                              </select>
+                                                                            </div>
+
+                                                                            <div class="form-group col-6 col-md-6">
+                                                                                <label for="Date">Date</label>
+                                                                                <input type="date" name="date1" id="Date" class="form-control" [(ngModel)]="taskForm.date">
+                                                                            </div>
+
+                                                                            <div class="form-group col-6 col-md-6">
+                                                                                <label for="name">Name</label>
+                                                                                <input type="text" name="name1" id="name" class="form-control" value="{{singleLead?.name}}" disabled>
+                                                                            </div>
+
+
+                                                                            <div class="form-group col-12 col-md-12">
+                                                                                <label for="status1">Status</label>
+                                                                                <select name="stat" id="status1" class="form-control" [(ngModel)]="taskForm.status">
+                                                                  <option value="none">--None--</option>
+                                                                  <option value="Not Started">Not Started</option>
+                                                                  <option value="In Progress">In Progress</option>
+                                                                  <option value="Completed">Completed</option>
+                                                                  <option value="Waiting on someone else">Waiting on someone else</option>
+                                                                  <option value="Defferd">Defferd</option>
+                                                                </select>
+                                                                            </div>
+
+                                                                            <div class="form-group col-12 col-md-12">
+                                                                                <input type="button" class="btn Create_Task" *ngIf="!updateTask" (click)="saveTask()" value="Create Now">
+                                                                                <input type="button" class="btn Create_Task" *ngIf="updateTask" (click)="UpdateTask()" value="Update Now">
+                                                                            </div>
+
+                                                                        </div>
+
+
+                                                                    </form>
+
+                                                                    <div class="table-responsive mt-3" *ngIf="Tasks?.length >= 1">
+                                                                        <table>
+                                                                            <tr class="th_r">
+                                                                                <th>ID</th>
+                                                                                <th>Subject</th>
+                                                                                <th>Date</th>
+                                                                                <th>Lead Name</th>
+                                                                                <th>Status</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+
+                                                                            <tr class="td_r" *ngFor="let items of Tasks;index as i">
+                                                                                <td># {{i+1}}</td>
+                                                                                <td>{{items.subject}}</td>
+                                                                                <td>{{items.date}}</td>
+                                                                                <td>{{items?.lead?.name}}</td>
+                                                                                <td>{{items.status}}</td>
+                                                                                <td>
+                                                                                    <i class="fa fa-trash-o" aria-hidden="true" (click)="deleteTask(items._id)"></i>
+                                                                                    <i class="fa fa-pencil" aria-hidden="true" (click)="getTaskbyId(items)"></i>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+
+
+
+                                                                </div>
+
+                                                                <!--Second tab call A Log start here-->
+                                                                <div class="tab-pane fade p-3" id="LogACall" role="tabpanel" aria-labelledby="LogACall-tab">
+                                                                    <button class="btn btn-primary create_task1 mb-2" (click)="logaCallOpen()" *ngIf="openForm.logaCall">
+                                                                        Close
+                                                                    </button>
+
+                                                                    <button class="btn create_task1 mb-2" (click)="logaCallOpen()" *ngIf="!openForm.logaCall">
+                                                                        Create Log a Call ...
+                                                                    </button>
+
+                                                                    <!--Call a Log Form start here-->
+                                                                    <form *ngIf="openForm.logaCall">
+
+                                                                        <div class="row">
+                                                                            <div class="form-group col-6 col-md-6">
+                                                                                <label for="subject1">Subject</label>
+                                                                                <select name="sub11" id="subject1" class="form-control" [(ngModel)]="callAlogForm.subject">
+                                                                      <option value="none">--None--</option>
+                                                                      <option value="Call">Call</option>
+                                                                      <option value="Email">Email</option>
+                                                                      <option value="Send Later">Send Later</option>
+                                                                      <option value="Send Quote">Send Quote</option>
+                                                                      <option value="Other">Other</option>
+                                                                  </select>
+                                                                            </div>
+
+                                                                            <div class="form-group col-6 col-md-6">
+                                                                                <label for="name">Name</label>
+                                                                                <input type="text" name="name1" id="name" class="form-control" value="{{singleLead?.name}}" disabled>
+                                                                            </div>
+
+                                                                            <div class="form-group col-12 col-md-12">
+                                                                                <label for="comment">Comment</label>
+                                                                                <textarea name="comment" id="comment" class="form-control" [(ngModel)]="callAlogForm.comment"></textarea>
+                                                                            </div>
+
+                                                                            <div class="form-group col-12 col-md-12">
+                                                                                <input type="button" class="btn Create_CallLog" *ngIf="!updateLog" (click)="savecallAlog()" value="Create Now">
+                                                                                <input type="button" class="btn Create_CallLog" *ngIf="updateLog" (click)="UpdateLogACall()" value="Update Now">
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </form>
+
+                                                                    <!--Table for  show data-->
+                                                                    <div class="table-responsive mt-5" *ngIf="CallALog?.length >= 1">
+                                                                        <table>
+                                                                            <tr class="th_r">
+                                                                                <th>ID</th>
+                                                                                <th>Subject</th>
+                                                                                <th>Lead Name</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+
+                                                                            <tr *ngFor="let items of CallALog;index as i" class="td_r">
+                                                                                <td>#{{i+1}}</td>
+                                                                                <td>{{items?.subject}}</td>
+                                                                                <td>{{items?.lead?.name}}</td>
+                                                                                <td>
+                                                                                    <i class="fa fa-trash-o" aria-hidden="true" (click)="deletecalALog(items._id)"></i>
+                                                                                    <i class="fa fa-pencil" aria-hidden="true" (click)="getLogbyId(items)"></i>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <!--Third tab Events start here-->
+                                                                <div class="tab-pane fade p-3" id="Events" role="tabpanel" aria-labelledby="Events-tab">
+                                                                    <!--when click btn then open a Popup for create new events -->
+                                                                    <button class="btn create_task1" data-toggle="modal" data-target="#addEvent">Create New Event ... </button>
+
+                                                                    <!--Only table show in here not a form-->
+                                                                    <div class="table-responsive mt-5" *ngIf="Events?.length >= 1">
+                                                                        <table>
+                                                                            <tr class="th_r">
+                                                                                <th>ID</th>
+                                                                                <th>Title</th>
+                                                                                <th>Type</th>
+                                                                                <th>Start Date</th>
+                                                                                <th>Start Time</th>
+                                                                                <th>End date</th>
+                                                                                <th>End Time</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+
+                                                                            <tr *ngFor="let items of Events;index as i" class="td_r">
+                                                                                <td>#{{i+1}}</td>
+                                                                                <td>{{items?.title}}</td>
+                                                                                <td>{{items?.type}}</td>
+                                                                                <td>{{items?.startdate}}</td>
+                                                                                <td>{{items?.starttime}}</td>
+                                                                                <td>{{items?.enddate}}</td>
+                                                                                <td>{{items?.endtime}}</td>
+                                                                                <td>
+                                                                                    <i class="fa fa-trash-o" aria-hidden="true" (click)="deleteEvent(items._id)"></i>
+                                                                                    <i class="fa fa-pencil" aria-hidden="true" data-toggle="modal" data-target="#addEvent" (click)="getEventById(items)"></i>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade p-3" id="Details" role="tabpanel" aria-labelledby="Details-tab">
+                                            <!--When No Leads Found-->
+                                            <div class="row justify-content-center" *ngIf="Leads?.length <= 0">
+                                                <p class="pt-2">No Leads found</p>
+                                            </div>
+
+                                            <!--When Leads available-->
+                                            <div *ngIf="Leads?.length >= 1">
+                                                <div class="table-responsive">
+                                                    <table>
+                                                        <tr class="th_r">
+                                                            <th>ID <i class="fa fa-sort" aria-hidden="true" (click)="sort('_id')"></i> </th>
+                                                            <th>Name</th>
+                                                            <th>Email</th>
+                                                            <th>Phone</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        <tr *ngFor="let items of Leads | filter:searchText | paginate: { itemsPerPage: 10, currentPage: p } | orderBy: key : reverse  ; index as i" class="td_r">
+                                                            <td># {{i+1}}</td>
+                                                            <td title="{{items.name}}" *ngIf="items.name?.length >= 30" routerLink="/single/{{items._id}}" id="LeadName">{{items.name.substr(0,30) | uppercase}} ... </td>
+                                                            <td title="{{items.name}}" *ngIf="items.name?.length <= 30" routerLink="/single/{{items._id}}" id="LeadName">{{items.name | uppercase}} </td>
+                                                            <td>{{items.email}}</td>
+                                                            <td>{{items.phone}}</td>
+                                                            <td>
+                                                                <i class="fa fa-pencil mr-4" aria-hidden="true" (click)="singleOnclick(items._id)" data-toggle="modal" data-target="#UpdateModal"></i>
+                                                                <i class="fa fa-trash-o" aria-hidden="true" (click)="delete(items._id)"></i>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <pagination-controls (pageChange)="p = $event" *ngIf="Leads?.length > 10"></pagination-controls>
+
+                                        </div>
+                                        <div class="tab-pane fade p-3" id="Attachments" role="tabpanel" aria-labelledby="Attachments-tab">
+                                            <!--When No Leads Found-->
+                                            <div class="row justify-content-center" *ngIf="attachmenstsData?.length <= 0">
+                                                <div class="col-md-6">
+                                                    <p class="pt-2" id="noAttachmentFounds">No Attachment's founds</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#AddAttchment" style="float: right;">Upload Files </button>
+                                                </div>
+                                            </div>
+
+                                            <!--When Leads available-->
+                                            <div *ngIf="attachmenstsData?.length >= 1">
+                                                <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#AddAttchment" style="float: right;">Upload Files </button>
+
+                                                <div class="table-responsive">
+                                                    <table>
+                                                        <tr class="th_r">
+                                                            <th>ID <i class="fa fa-sort" aria-hidden="true" (click)="sort('_id')"></i> </th>
+                                                            <th>Title</th>
+                                                            <th>Size</th>
+                                                            <th>File Name</th>
+                                                            <th>Download</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        <tr *ngFor="let items of attachmenstsData | filter:searchText | paginate: { itemsPerPage: 10, currentPage: p } | orderBy: key : reverse  ; index as i" class="td_r">
+                                                            <td># {{i+1}}</td>
+                                                            <td title="{{items.title}}" *ngIf="items.title?.length >= 30">{{items.title.substr(0,30) | uppercase}} ... </td>
+                                                            <td title="{{items.title}}" *ngIf="items.title?.length <= 30">{{items.title | uppercase}} </td>
+                                                            <td>{{items.size}}</td>
+                                                            <td>
+                                                                <i (click)="attachFile(items.file)" data-target="#FileOpen" data-toggle="modal" style="cursor: pointer;">{{items.title}}</i>
+                                                            </td>
+                                                            <td>
+                                                                <span (click)="download(items.file)">Download</span>
+                                                            </td>
+                                                            <td>
+                                                                <i class="fa fa-trash-o" aria-hidden="true" (click)="deleteAttachments(items._id)"></i>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <pagination-controls (pageChange)="p = $event" *ngIf="Leads?.length > 10"></pagination-controls>
+
+                                        </div>
+
+                                        <!-- Calender App Start here-->
+                                        <div class="tab-pane fade p-3" id="calenderTabb" role="tabpanel" aria-labelledby="Attachments-tab">
+                                            <div class="row p-5" style="width: 100%;">
+                                                <div class="card p-3" style="width: 100%;">
+                                                    <div class="row text-center">
+                                                        <div class="col-md-4">
+                                                            <div class="btn-group">
+                                                                <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+                                                                    Previous
+                                                                </div>
+                                                                <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                                                                    Today
+                                                                </div>
+                                                                <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+                                                                    Next
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <button class="btn btn-primary" (click)="addEvent()">
+                                                        Add More
+                                                      </button>
+                                                        </div>
+
+                                                    </div>
+                                                    <br />
+
+                                                    <!--Calender Events start here-->
+                                                    <div [ngSwitch]="view">
+                                                        <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                                                        </mwl-calendar-month-view>
+                                                        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                                                        </mwl-calendar-week-view>
+                                                        <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                                                        </mwl-calendar-day-view>
+                                                    </div>
+
+
+                                                    <ng-template #modalContent let-close="close">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" *ngIf="ActionBtn">Update Event</h5>
+                                                            <h5 class="modal-title" *ngIf="!ActionBtn">Create Event</h5>
+                                                            <button type="button" class="close" (click)="close()">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="row">
+                                                                <div class="form-group col-12 col-md-6">
+                                                                    <label for="title1">Title</label>
+                                                                    <input type="text" class="form-control" id="title1" name="tit" [(ngModel)]="CalenderObj.title">
+                                                                </div>
+
+                                                                <div class="form-group col-12 col-md-6">
+                                                                    <label for="typ">Type</label>
+                                                                    <input type="text" class="form-control" id="typ" name="typ" [(ngModel)]="CalenderObj.type">
+                                                                </div>
+
+                                                                <div class="form-group col-12 col-md-6">
+                                                                    <label for="start1">Start</label>
+                                                                    <input type="date" class="form-control" id="start1" name="start" [(ngModel)]="CalenderObj.start">
+                                                                </div>
+
+                                                                <div class="form-group col-12 col-md-6">
+                                                                    <label for="end1">End</label>
+                                                                    <input type="date" class="form-control" id="end1" name="end" [(ngModel)]="CalenderObj.end">
+                                                                </div>
+
+                                                                <div class="form-group col-12 col-md-12">
+                                                                    <label for="adenda">Description  (Agenda)</label>
+                                                                    <textarea class="form-control" id="adenda" name="desc" [(ngModel)]="CalenderObj.description"></textarea>
+                                                                </div>
+
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+
+                                                            <button type="button" class="btn btn-outline-secondary" (click)="close()">
+                                                          OK
+                                                        </button>
+
+                                                            <input type="submit" value="Update" (click)="update()" *ngIf="ActionBtn" class="btn btn-primary">
+                                                            <input type="submit" value="Delete" (click)="deleteCalender(updatedId)" *ngIf="ActionBtn" class="btn btn-secondary">
+                                                            <input type="submit" value="Create" (click)="Create()" *ngIf="!ActionBtn" class="btn btn-primary">
+                                                        </div>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ./Tabs -->
+        </div>
+    </div>
+
+
+    <!-- Create new events Modal  -->
+    <div class="modal fade" id="addEvent" tabindex="-1" role="dialog" aria-labelledby="addEventLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Event</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-6 col-md-6">
+                                <label for="title">Title</label>
+                                <input type="text" name="title" id="title" class="form-control" [(ngModel)]="eventForm.title">
+                            </div>
+                            <div class="form-group col-6 col-md-6">
+                                <label for="Type">Type</label>
+                                <input type="text" name="Type" id="Type" class="form-control" [(ngModel)]="eventForm.type">
+                            </div>
+                            <div class="form-group col-6 col-md-6">
+                                <label for="date1">Start Date</label>
+                                <input type="date" name="date" id="date1" class="form-control" [(ngModel)]="eventForm.startdate">
+                            </div>
+                            <div class="form-group col-6 col-md-6">
+                                <label for="time1">Start Time</label>
+                                <input type="time" name="time1" id="time1" class="form-control" [(ngModel)]="eventForm.starttime">
+                            </div>
+                            <div class="form-group col-6 col-md-6">
+                                <label for="date2">End Date</label>
+                                <input type="date" name="date2" id="date2" class="form-control" [(ngModel)]="eventForm.enddate">
+                            </div>
+                            <div class="form-group col-6 col-md-6">
+                                <label for="time2">End Time</label>
+                                <input type="time" name="time" id="time2" class="form-control" [(ngModel)]="eventForm.endtime">
+                            </div>
+                            <div class="form-group col-12 col-md-12">
+                                <label for="Description">Description (Agenda) </label>
+                                <textarea name="Description" id="Description" class="form-control" [(ngModel)]="eventForm.description"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary saveBtn" *ngIf="!updateEvent" (click)="saveEvent()" value="Create Now">
+                    <input type="submit" class="btn btn-primary saveBtn" *ngIf="updateEvent" (click)="UpdateEvent()" value="Update Now">
+
+                    <input type="button" hidden data-dismiss="modal" id="closeEvent_Modal">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal for add new attachmenst files -->
+    <div class="modal fade" id="AddAttchment" tabindex="-1" role="dialog" aria-labelledby="AddAttchmentLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Upload Attachments</h4>
+                </div>
+                <div class="modal-body mt-2 mb-3">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-12 col-md-12">
+                                <label for="title">Title</label>
+                                <input type="text" name="title" id="title" class="form-control" [(ngModel)]="attachments.title">
+                            </div>
+                            <div class=" col-12 col-md-12">
+                                <label for="file">file</label>
+                                <input type="file" name="file" id="file" class="form-control" (change)="upload($event)">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary saveBtn" (click)="saveAttachments()" value="Upload Now">
+                    <input type="button" hidden data-dismiss="modal" id="closeAttachment_Modal">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal for Display uploaded files -->
+    <div class="modal fade" id="FileOpen" tabindex="-1" role="dialog" aria-labelledby="FileOpenLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <img src="{{baseurl}}/{{attachmentFile}}" alt="" style="width: 100%;">
+                </div>
+            </div>
+        </div>
+    </div>

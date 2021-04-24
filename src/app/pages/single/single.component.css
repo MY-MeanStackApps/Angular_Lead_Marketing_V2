@@ -1,0 +1,151 @@
+.nav-link {
+    border: none;
+    color: #111111 !important;
+    font-weight: 500 !important;
+    max-width: 140px;
+    margin: 3px 0px;
+}
+
+.active {
+    background: transparent !important;
+    border-bottom: 3px solid #0774d3 !important;
+    border: none;
+    color: #6d6de6 !important;
+    font-weight: 500 !important;
+}
+
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+    border-color: transparent;
+}
+
+.nav-tabs {
+    border: none;
+    height: 60px !important;
+}
+
+.tab-pane {
+    background: transparent !important;
+    border: none !important;
+    color: #1E738E;
+    border: none;
+    width: 100%;
+}
+
+.card {
+    min-height: 300px;
+    box-shadow: 0 1px 40px 0 rgb(107 107 107 / 20%);
+    background: white !important;
+}
+
+.create_task1 {
+    background: transparent;
+    border: 1px solid #cacaca;
+    width: 100%;
+    outline: none !important;
+}
+
+
+/*Form*/
+
+.form-group label,
+input,
+select {
+    color: black !important;
+}
+
+.form-group input,
+select:focus {
+    box-shadow: none !important;
+}
+
+.fa-trash-o {
+    cursor: pointer;
+    font-size: 19px;
+}
+
+.fa-pencil {
+    cursor: pointer;
+    font-size: 19px;
+    margin: 0px 0px 0px 10px;
+}
+
+.saveBtn {
+    color: white !important;
+    border: none !important;
+}
+
+.modal-title {
+    font-weight: 400;
+    color: black;
+    font-size: 19px;
+}
+
+.form-group label {
+    color: black !important;
+    font-weight: 400 !important;
+}
+
+.Create_Task {
+    background: #ffd22e;
+    color: white !important;
+    font-weight: 500;
+    border: none;
+    outline: none !important;
+    box-shadow: none !important;
+    float: right;
+}
+
+.Create_CallLog {
+    background: #ffd22e;
+    color: white !important;
+    font-weight: 500;
+    border: none;
+    outline: none !important;
+    box-shadow: none !important;
+    float: right;
+}
+
+.main_Bar {
+    padding: 14px;
+}
+
+.mark0 {
+    background: #1dbf73;
+    border-radius: 21px;
+    height: 32px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    line-height: 31px;
+    margin: 0px 0px 10px 0px;
+}
+
+.mark1 {
+    background: #0059b7;
+    border-radius: 21px;
+    height: 32px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    line-height: 31px;
+    margin: 0px 0px 10px 0px;
+}
+
+.mark2 {
+    background: #ffffff;
+    border-radius: 21px;
+    height: 32px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    line-height: 31px;
+    border: 1px solid rgb(160, 160, 160);
+    margin: 0px 0px 10px 0px;
+}
+
+#noAttachmentFounds {
+    color: black;
+    font-size: 15px;
+    font-weight: 500;
+}

@@ -1,0 +1,23 @@
+.fa-pencil {
+    cursor: pointer;
+}
+
+.fa-trash-o {
+    cursor: pointer;
+}
+
+.btn-primary {
+    border: none !important;
+}
+
+.card {
+    padding: 0px 0px 20px 0px;
+}
+
+#LeadName {
+    cursor: pointer;
+}
+
+#LeadName:focus {
+    outline: none !important;
+}
